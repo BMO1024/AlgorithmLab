@@ -1,14 +1,16 @@
-.PHONY:clean all
-CC=g++
-VPATH=src
+CC = g++
+CFLAGS = -I./include
+VPATH = src
+OBJ = sum_of_subset.o test.o
 
-fortest:sum_of_subset.o test.o
-	$(CC) -o fortest sum_of_subset.o test.o
-sum_of_subset.o:sum_of_subset.cpp
-	$(CC) -c $(VPATH)/sum_of_subset.cpp
-test.o:test.cpp
-	$(CC) -c $(VPATH)/test.cpp
+run: sum_of_subset
+	@echo "NOW RUNNING..."
+	@./sum_of_subset
+sum_of_subset: $(OBJ)
+	$(CC) -o $@ $^
+%.o:%.cpp
+	$(CC) -c $< $(CFLAGS)
 
 .PHONY : clean
 clean:
-	-rm *.o fortest
+	@rm -rf *.o sum_of_subset
