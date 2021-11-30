@@ -3,6 +3,7 @@
 #include <string>
 #include "backtrack.h"
 #define MAX_NUM 100
+#define TESTCASE_NUM 7
 using namespace std;
 
 int n = 0;
@@ -67,18 +68,18 @@ void testcase_read(string file_num){
     fileread.close();
 }
 
-void test(string testcase){
+void backtrack_test(string testcase){
     cout << "Testing case " << testcase << ":" << endl;
     testcase_read(testcase);
+    for(int i = 1; i <= n; i++)
+        x[i] = 0;
 	backtrack(1);
 }
 
 int main(){
-    test("p01");
-    test("p02");
-    test("p03");
-    test("p04");
-    test("p05");
-    test("p06");
-    test("p07");
+    int i;
+    for(i = 1; i <= TESTCASE_NUM; i++)
+        backtrack_test("p0" + to_string(i));
+
+    return 0;
 }
