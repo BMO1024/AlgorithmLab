@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "backtrack.h"
 #define MAX_NUM 100
 #define TESTCASE_NUM 7
 using namespace std;
@@ -46,9 +45,9 @@ void backtrack(int level){
 
 void testcase_read(string file_num){
     ifstream fileread;
-    string prefix = "./testcases/";
-    string suffix_c = "_c.txt";
-    string suffix_w = "_w.txt";
+    string prefix = "./data/subsetsum-";
+    string suffix_c = "-1.data";
+    string suffix_w = "-2.data";
     fileread.open(prefix + file_num + suffix_c);
     fileread >> c;
     fileread.close();
@@ -79,7 +78,7 @@ void backtrack_test(string testcase){
 int main(){
     int i;
     for(i = 1; i <= TESTCASE_NUM; i++)
-        backtrack_test("p0" + to_string(i));
+        backtrack_test(to_string(i));
 
     return 0;
 }
