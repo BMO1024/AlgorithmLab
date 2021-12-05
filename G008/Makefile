@@ -18,4 +18,4 @@ bb-subsetsum: bb-subsetsum.o
 
 .PHONY : clean
 clean:
-	@rm -rf *.o bt-subsetsum bb-subsetsum
+	@rm -rf *.o bt-subsetsum bb-subsetsum dp-subsetsum
