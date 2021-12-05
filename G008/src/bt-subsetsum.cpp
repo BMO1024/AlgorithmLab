@@ -2,43 +2,41 @@
 #include <fstream>
 #include <string>
 #define MAX_NUM 100
-#define TESTCASE_NUM 7
+#define TESTCASE_NUM 8
 using namespace std;
 
 int n = 0;
 int w[MAX_NUM];
 bool x[MAX_NUM];
 int c;
-int sum = 0;
+int sub_sum = 0;
+int remain_sum;
+int print_count = 0;
 
 void print(){
+    print_count++;
     for(int i = 1; i <= n; i++)
         cout << x[i] << " ";
     cout << endl;
-}
-
-int bound(int j){
-	int remain = 0;
-	for(int k = j; k <= n; k++)
-		remain += w[k];
-	return remain;
 }
 
 void backtrack(int level){
 	if(level > n)
         return;
     else{
-        if(sum + w[level] <= c){
+        if(sub_sum + w[level] <= c && sub_sum + remain_sum >= c){
             x[level] = 1;
-            sum += w[level];
-            if(sum == c)
+            sub_sum += w[level];
+            remain_sum -= w[level];
+            if(sub_sum == c)
                 print();
             else
                 backtrack(level + 1);
-            sum -= w[level];
+            remain_sum += w[level];
+            sub_sum -= w[level];
             x[level] = 0;
         }
-        if(sum + bound(level + 1) >= c)
+        if(sub_sum + remain_sum - w[level] >= c)
             backtrack(level + 1);
     }
 }
@@ -67,18 +65,29 @@ void testcase_read(string file_num){
     fileread.close();
 }
 
-void backtrack_test(string testcase){
+void bt_test(string testcase){
     cout << "Testing case " << testcase << ":" << endl;
     testcase_read(testcase);
+    print_count = 0;
+    remain_sum = 0;
     for(int i = 1; i <= n; i++)
-        x[i] = 0;
-	backtrack(1);
+            remain_sum += w[i];
+    while(c > 0){
+        for(int i = 1; i <= n; i++)
+            x[i] = 0;
+	    backtrack(1);
+        if(print_count > 0)
+            break;
+        c--;
+    }
 }
 
 int main(){
     int i;
+    cout << "=====Backtrack Algorithm=====" << endl;
     for(i = 1; i <= TESTCASE_NUM; i++)
-        backtrack_test(to_string(i));
+        bt_test(to_string(i));
+    cout << "=============================" << endl;
 
     return 0;
 }
