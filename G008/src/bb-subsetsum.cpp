@@ -4,15 +4,17 @@
 #include <queue>
 
 #define MAX_NUM 100
-#define TESTCASE_NUM 7
+#define TESTCASE_NUM 8
 using namespace std;
 
 int n = 0;
 int w[MAX_NUM];
 bool x[MAX_NUM];
 int c;
-int sum = 0;
-queue<int> queue1;
+int sub_sum = 0;
+int remain_sum;
+int print_count = 0;
+
 
 void testcase_read(string file_num) {
     ifstream fileread;
@@ -75,9 +77,18 @@ void branchbound(bool x[], int i, int has) {
 void bb_test(string testcase) {
     cout << "Testing case " << testcase << ":" << endl;
     testcase_read(testcase);
+    print_count = 0;
+    remain_sum = 0;
     for (int i = 1; i <= n; i++)
-        x[i] = 0;
-    branchbound(x, 0, sum);
+        remain_sum += w[i];
+    while (c > 0) {
+        for (int i = 1; i <= n; i++)
+            x[i] = 0;
+        branchbound(x, 0, sub_sum);
+        if (print_count > 0)
+            break;
+        c--;
+    }
 }
 
 int main() {
