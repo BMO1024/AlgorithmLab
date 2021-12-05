@@ -82,7 +82,9 @@ void bb_test(string testcase) {
 
 int main() {
     int i;
+    cout << "=====Branch&bound Algorithm=====" << endl;
     for (i = 1; i <= TESTCASE_NUM; i++)
         bb_test(to_string(i));
+    cout << "=============================" << endl;
     return 0;
 }
