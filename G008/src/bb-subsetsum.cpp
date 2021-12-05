@@ -1,8 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
-
 #define MAX_NUM 100
 #define TESTCASE_NUM 8
 using namespace std;
@@ -16,7 +14,7 @@ int sum;
 int print_count = 0;
 
 
-void testcase_read(string file_num) {
+void testcase_read(string file_num){
     ifstream fileread;
     string prefix = "./data/subsetsum-";
     string suffix_c = "-1.data";
@@ -26,7 +24,7 @@ void testcase_read(string file_num) {
     fileread.close();
     fileread.open(prefix + file_num + suffix_w);
     n = 0;
-    while (true) {
+    while(true){
         int num;
         n++;
         fileread >> num;
@@ -40,14 +38,14 @@ void testcase_read(string file_num) {
     fileread.close();
 }
 
-void print() {
+void print(){
     print_count++;
     for (int i = 1; i <= n; i++)
         cout << x[i] << " ";
     cout << endl;
 }
 
-void branchbound(int i, int has, int remain) {
+void branchbound(int i, int has, int remain){
     if (i > n)
         return;
     if (has + w[i] == c) {
@@ -67,7 +65,7 @@ void branchbound(int i, int has, int remain) {
     }
 }
 
-void bb_test(string testcase) {
+void bb_test(string testcase){
     cout << "Testing case " << testcase << ":" << endl;
     testcase_read(testcase);
     print_count = 0;
@@ -84,7 +82,7 @@ void bb_test(string testcase) {
     }
 }
 
-int main() {
+int main(){
     int i;
     cout << "=====Branch&Bound Algorithm=====" << endl;
     for (i = 1; i <= TESTCASE_NUM; i++)
