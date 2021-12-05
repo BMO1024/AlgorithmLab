@@ -1,13 +1,15 @@
 CC = g++
 VPATH = src
-OBJ = bt-subsetsum.o
 
-run: bt-subsetsum
+run: bb-subsetsum bt-subsetsum
 	@echo "NOW RUNNING..."
 	@rm -rf *.o
 	@./bt-subsetsum
-bt-subsetsum: $(OBJ)
-	$(CC) -o $@ $^
+	@./bb-subsetsum
+bt-subsetsum: bt-subsetsum.o
+	$(CC) -o $@ bt-subsetsum.o
+bb-subsetsum: bb-subsetsum.o
+	$(CC) -o $@ bb-subsetsum.o
 %.o:%.cpp
 	$(CC) -c $<
 

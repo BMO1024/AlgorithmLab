@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <queue>
+
 
 #define MAX_NUM 100
 #define TESTCASE_NUM 8
@@ -12,7 +12,7 @@ int w[MAX_NUM];
 bool x[MAX_NUM];
 int c;
 int sub_sum = 0;
-int remain_sum;
+int sum;
 int print_count = 0;
 
 
@@ -41,36 +41,29 @@ void testcase_read(string file_num) {
 }
 
 void print() {
+    print_count++;
     for (int i = 1; i <= n; i++)
         cout << x[i] << " ";
     cout << endl;
 }
 
-int bound(int j) {
-    int remain = 0;
-    for (int k = j; k <= n; k++)
-        remain += w[k];
-    return remain;
-}
-
-void branchbound(bool x[], int i, int has) {
+void branchbound(int i, int has, int remain) {
     if (i > n)
         return;
     if (has + w[i] == c) {
         x[i] = 1;
         print();
-
         x[i] = 0;
         return;
     }
-    if ((has + bound(i) >= c) && (has + w[i] <= c)) {
+    if ((has + remain >= c) && (has + w[i] <= c)) {
         x[i] = 1;
-        branchbound(x, i + 1, has + w[i]);
+        branchbound(i + 1, has + w[i], remain - w[i]);
         x[i] = 0;
     }
-    if (has + bound(i) - w[i] >= c) {
+    if (has + remain - w[i] >= c) {
         x[i] = 0;
-        branchbound(x, i + 1, has);
+        branchbound(i + 1, has, remain - w[i]);
     }
 }
 
@@ -78,13 +71,13 @@ void bb_test(string testcase) {
     cout << "Testing case " << testcase << ":" << endl;
     testcase_read(testcase);
     print_count = 0;
-    remain_sum = 0;
+    sum = 0;
     for (int i = 1; i <= n; i++)
-        remain_sum += w[i];
+        sum += w[i];
     while (c > 0) {
         for (int i = 1; i <= n; i++)
             x[i] = 0;
-        branchbound(x, 0, sub_sum);
+        branchbound(1, 0, sum);
         if (print_count > 0)
             break;
         c--;
@@ -93,9 +86,9 @@ void bb_test(string testcase) {
 
 int main() {
     int i;
-    cout << "=====Branch&bound Algorithm=====" << endl;
+    cout << "=====Branch&Bound Algorithm=====" << endl;
     for (i = 1; i <= TESTCASE_NUM; i++)
         bb_test(to_string(i));
-    cout << "=============================" << endl;
+    cout << "================================" << endl;
     return 0;
 }
