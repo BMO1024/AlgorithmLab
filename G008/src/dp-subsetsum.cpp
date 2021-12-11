@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <algorithm>
+#include <ctime>
 #define MAX_NUM 100
 #define TESTCASE_NUM 7
 using namespace std;
@@ -94,10 +95,12 @@ void testcase_read(string file_num){
 void dp_test(string testcase){
     cout << "Testing case " << testcase << ":" << endl;
     testcase_read(testcase);
+    long time1 = clock();
     for(int i = 1; i <= n; i++)
         x[i] = 0;
     dp();
     traceback(1, c);
+    cout << "Time cost: " << clock() - time1 << endl;
 }
 
 int main(){

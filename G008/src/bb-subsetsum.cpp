@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctime>
 #define MAX_NUM 100
 #define TESTCASE_NUM 7
 using namespace std;
@@ -68,6 +69,7 @@ void branchbound(int i, int has, int remain){
 void bb_test(string testcase){
     cout << "Testing case " << testcase << ":" << endl;
     testcase_read(testcase);
+    long time1 = clock();
     print_count = 0;
     sum = 0;
     for (int i = 1; i <= n; i++)
@@ -80,6 +82,7 @@ void bb_test(string testcase){
             break;
         c--;
     }
+    cout << "Time cost: " << clock() - time1 << endl;
 }
 
 int main(){
