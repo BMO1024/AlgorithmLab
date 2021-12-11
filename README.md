@@ -34,7 +34,9 @@ The deadline of this assignment is Dec 27th, 2021.
 
 You may ask why I put some pusheens here in the README file of an assignment. Well, I'm **willing to do it**.
 
-![img](https://pusheen.com/wp-content/uploads/2021/04/Plant-Hero.jpg)
+<div align="center">
+<img src=https://pusheen.com/wp-content/uploads/2021/04/Plant-Hero.jpg>
+</div>
 
 <div align="center">
 <img src=.\G008\references\54067CF563B3890C5D3880EEE4D0B962.jpg>
