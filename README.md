@@ -12,7 +12,7 @@ Ogiso Setsuna and Shameimaru Aya from Tianjin University.
 
 ###  Why We Do This Lab
 
-![shiyanmudi](G008\references\实验目的.png)
+![shiyanmudi](.\G008\references\实验目的.png)
 
 ~~Fake news! We do it just because our teacher want us to do it. :(~~
 
@@ -34,4 +34,4 @@ You may ask why I put some pusheens here in the README file of an assignment. We
 
 ![img](https://pusheen.com/wp-content/uploads/2021/04/Plant-Hero.jpg)
 
-![pusheen](G008\references\54067CF563B3890C5D3880EEE4D0B962.jpg)
+![pusheen](.\G008\references\54067CF563B3890C5D3880EEE4D0B962.jpg)
