@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #define MAX_NUM 100
-#define TESTCASE_NUM 8
+#define TESTCASE_NUM 7
 using namespace std;
 
 int n = 0;
@@ -84,9 +84,9 @@ void bb_test(string testcase){
 
 int main(){
     int i;
-    cout << "=====Branch&Bound Algorithm=====" << endl;
+    cout << "=======Branch and Bound Algorithm=======" << endl;
     for (i = 1; i <= TESTCASE_NUM; i++)
         bb_test(to_string(i));
-    cout << "================================" << endl;
+    cout << "========================================" << endl;
     return 0;
 }

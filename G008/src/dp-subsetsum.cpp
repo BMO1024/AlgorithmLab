@@ -3,26 +3,68 @@
 #include <string>
 #include <algorithm>
 #define MAX_NUM 100
-#define TESTCASE_NUM 8
+#define TESTCASE_NUM 7
 using namespace std;
 
 int n = 0;
 int w[MAX_NUM];
 bool x[MAX_NUM];
+int dp_table[100][10000];
 int c;
 int sum = 0;
 
-int dp(int i, int y){
-    if(i == n){
-        if(y >= w[i])
-            return w[i];
+void dp(){
+    int i, j;
+    for(i = 1; i <= n; i++)
+        dp_table[i][0] = 0;
+    for(j = 0; j <= c; j++){
+        if(j >= w[n])
+            dp_table[n][j] = w[n];
         else
-            return 0;
+            dp_table[n][j] = 0;
     }
-    if(y >= w[i])
-        return max(dp(i + 1, y), dp(i + 1, y - w[i]) + w[i]);
-    else
-        return dp(i + 1, y);
+    for(j = 1; j <= c; j++){
+        for(i = n - 1; i >= 1; i--){
+            if(j < w[i])
+                dp_table[i][j] = dp_table[i + 1][j];
+            else
+                dp_table[i][j] = max(dp_table[i + 1][j], dp_table[i + 1][j - w[i]] + w[i]);
+        }
+    }
+}
+
+void traceback(int i, int j){
+    if(i == n){
+        if(j >= w[n])
+            x[n] = 1;
+        else
+            x[n] = 0;
+        for(int k = 1; k <= n; k++)
+            cout << x[k] << " ";
+        cout << endl;
+    }
+    else{
+        if(j - w[i] >= 0){
+            if(dp_table[i + 1][j] > dp_table[i + 1][j - w[i]] + w[i]){
+                x[i] = 0;
+                traceback(i + 1, j);
+            }
+            else if(dp_table[i + 1][j] < dp_table[i + 1][j - w[i]] + w[i]){
+                x[i] = 1;
+                traceback(i + 1, j - w[i]);
+            }
+            else{
+                x[i] = 0;
+                traceback(i + 1, j);
+                x[i] = 1;
+                traceback(i + 1, j - w[i]);
+            }
+        }
+        else{
+            x[i] = 0;
+            traceback(i + 1, j);
+        }
+    }
 }
 
 void testcase_read(string file_num){
@@ -54,7 +96,8 @@ void dp_test(string testcase){
     testcase_read(testcase);
     for(int i = 1; i <= n; i++)
         x[i] = 0;
-	cout << dp(1, c) << endl;
+    dp();
+    traceback(1, c);
 }
 
 int main(){
