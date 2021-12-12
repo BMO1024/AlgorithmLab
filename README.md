@@ -26,7 +26,7 @@ Use our brains and our hands, of course.
 
 ### Deadline
 
-The deadline of this assignment is Dec 27th, 2021.
+The deadline of this assignment is Dec 17th, 2021.
 
 ~~WTF?Why is the f**king deadline so close to the final examination?Why???~~
 
@@ -41,3 +41,8 @@ You may ask why I put some pusheens here in the README file of an assignment. We
 <div align="center">
 <img src=.\G008\references\54067CF563B3890C5D3880EEE4D0B962.jpg>
 </div>
+### References
+
+You these algorithms, don't listen to the wind and think it as rain, want to make a big new Aya.
+
+**TOO YOUNG TOO SIMPLE SOMETIMES NAIVE**
